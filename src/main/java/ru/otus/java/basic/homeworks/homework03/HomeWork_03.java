@@ -9,8 +9,5 @@ public class HomeWork_03 {
         if(n < 0) {
             System.out.println(n + "отрицательное число");
         }
-        else {
-            System.out.println("передано не отрицательное число");
-        }
     }
 }
