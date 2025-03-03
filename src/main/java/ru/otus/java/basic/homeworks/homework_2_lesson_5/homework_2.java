@@ -8,8 +8,8 @@ public class homework_2 {
         printSumArray(1,2,3,4,-10,6,78,98,12);
         printFillArrayNumber(5, 1,2,3,4,-10,6,78,98,12);
         printIncreaseArrayNumber(6, 1,1,1,1,1,1,1,1,1);
-        printBiggerHalfArray(1,1,1,1,1,1,1,1,1,1);
-//        printSumSeveralArrays({1,1,1},{1,1,1},{1,1,1});
+        printBiggerHalfArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+        printSumSeveralArrays(3, new int[][] {{1,1,1,1,1}, {1,1,1}, {1,1},{1,1,1,1,1}});
         searchHalfArray(1,2,3,6,1,4,17);
         checkIncreaseArray(1,2,3,4,5);
         checkDecreaseArray(5,4,3,2,1);
@@ -65,14 +65,21 @@ public class homework_2 {
         }
     }
         // printSumSeveralArrays в процессе решения
-    public static void printSumSeveralArrays(int[] array1, int[] array2, int[] array3) {
-        int[] sumArray = new int[Math.max(array1.length, Math.max(array2.length, array3.length))];
-        for (int i = 0; i < Math.min(array1.length, Math.min(array2.length, array3.length)); i++) {
-            sumArray[i] = array1[i] + array2[i] + array3[i];
+    public static void printSumSeveralArrays(int numLineArray, int[][] array) {
+        int maxLineLength = 0;
+        int[] resultArray;
+        for (int i = 0; i < numLineArray; i++) {
+            if (array[i].length > maxLineLength) {
+                maxLineLength = array[i].length;
+            }
         }
-        for (int i = Math.min(array1.length, Math.min(array2.length, array3.length));
-            i < Math.min(array1.length, Math.min(array2.length, array3.length)); i++) {
-        }
+            resultArray = new int[maxLineLength];
+            for (int j = 0; j < array.length; j++) {
+                for (int k = 0; k < array[j].length; k++) {
+                    resultArray[k] = resultArray[k] + array[j][k];
+                }
+            }
+            System.out.println(Arrays.toString(resultArray));
     }
 
     public static void searchHalfArray(int...array) {
