@@ -1,6 +1,6 @@
 package ru.otus.java.basic.homeworks.homework_3_lesson_7;
 
-public class homework_3 {
+public class Homework3 {
     public static void main(String[] args) {
         sumOfPositiveElements(new int[][] {{1,2,3,-4,1,-9}, {1,2,3,-4,1,-9}});
         getPrintCharArray2D(5);
@@ -11,7 +11,7 @@ public class homework_3 {
 
     public static int findSecondSumLineArray(int numberSumLine, int[][] ints) {
         int sumLine = 0;
-        if (ints.length < 1) {
+        if (numberSumLine < 1) {
             System.out.println("Массив не имеет второй строки");
             return -1;
         }
@@ -49,17 +49,15 @@ public class homework_3 {
     }
 
     public static void getPrintCharArray2D(int size) {
-        char [][] arrayChar = new char[size][size];
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                arrayChar[i][j] = '*';
-                System.out.print(arrayChar[i][j] + " ");
+                System.out.print('*' + " ");
             }
             System.out.println();
         }
     }
 
-    public static void sumOfPositiveElements(int[][] ints) {
+    public static int sumOfPositiveElements(int[][] ints) {
         int sum = 0;
         for(int i = 0; i < ints.length; i++ ) {
             for(int j = 0; j < ints[i].length; j++ ) {
@@ -67,7 +65,9 @@ public class homework_3 {
                     sum += ints[i][j];
                 }
             }
-            System.out.print("Сумма положительных эллементов массива равна " + sum);
         }
+        System.out.print("Сумма положительных эллементов массива равна " + sum);
+        System.out.println();
+        return sum;
     }
 }
