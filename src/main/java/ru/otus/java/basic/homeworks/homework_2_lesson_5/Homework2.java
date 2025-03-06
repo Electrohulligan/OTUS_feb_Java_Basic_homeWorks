@@ -2,7 +2,7 @@ package ru.otus.java.basic.homeworks.homework_2_lesson_5;
 
 import java.util.Arrays;
 
-public class homework_2 {
+public class Homework2 {
     public static void main(String[] args) {
         printLineNumber(5, "HelloWorld!!!");
         printSumArray(1,2,3,4,-10,6,78,98,12);
