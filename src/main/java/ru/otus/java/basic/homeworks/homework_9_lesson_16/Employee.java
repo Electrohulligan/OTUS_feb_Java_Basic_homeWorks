@@ -1,10 +1,10 @@
 package ru.otus.java.basic.homeworks.homework_9_lesson_16;
 
-public class Emoloyee {
+public class Employee {
     private String name;
     private int age;
 
-    public Emoloyee(String name, int age) {
+    public Employee(String name, int age) {
         this.name = name;
         this.age = age;
     }
