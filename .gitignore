@@ -4,5 +4,6 @@ target/
 *.iml
 *.ipr
 /.idea/
+/src/main/java/ru/otus/java/basic/homeworks/homework_12_lesson_19/
 /src/main/java/ru/otus/java/basic/homeworks/homework_11_lesson_18/
 /src/main/java/ru/otus/java/basic/homeworks/homework03/

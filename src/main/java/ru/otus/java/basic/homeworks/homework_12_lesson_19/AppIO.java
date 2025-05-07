@@ -12,11 +12,23 @@ public class AppIO {
     private String inputFileName;
     private String usersTextForFile;
     private String chooseToContinue;
+    private String chooseToCreateFileAgain;
 
-    public static void createFilesInDirectory() throws IOException {
-        for (int i = 1; i < 6; i++) {
-            File file = new File("FilesForHomeWork12/FileText_" + i + ".txt");
-            file.createNewFile();
+    public static void createFilesInDirectory(AppIO appIO) throws IOException {
+        if (appIO.isCreateFilesAgain()) {
+            for (int i = 1; i < 6; i++) {
+                File file = new File("FilesForHomeWork12/FileText_" + i + ".txt");
+                file.createNewFile();
+
+                try {
+                    FileWriter fw = new FileWriter(file);
+                    fw.write("Вывод текста из метода " + i + "го файла");
+                    fw.close();
+                } catch (IOException e) {
+                    System.out.println("Exception writing to the file");
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
@@ -61,7 +73,7 @@ public class AppIO {
                 break;
             }
         }
-        if(isNameFileCorrect == false) {
+        if (isNameFileCorrect == false) {
             System.out.println("There is no such file in the selected directory");
             inputNameFile();
             checkInputName();
@@ -69,7 +81,8 @@ public class AppIO {
     }
 
     public void readTextFromSelectedFile() {
-        try (InputStreamReader in = new InputStreamReader(new FileInputStream(dir + "/" + inputFileName))) {
+        try (BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(dir + "/" + inputFileName));
+             InputStreamReader in = new InputStreamReader(bufferedInputStream)) {
             int n = in.read();
             while (n != -1) {
                 System.out.print((char) n);
@@ -89,7 +102,7 @@ public class AppIO {
         usersTextForFile = " Added text -> " + sc.nextLine();
 
         byte[] buffer = usersTextForFile.getBytes(StandardCharsets.UTF_8);
-        try(FileOutputStream out = new FileOutputStream(dir + "/" + inputFileName, true)) {
+        try (BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(dir + "/" + inputFileName, true))) {
             out.write(buffer);
         } catch (IOException e) {
             e.printStackTrace();
@@ -101,10 +114,9 @@ public class AppIO {
         Scanner sc = new Scanner(System.in);
         chooseToContinue = sc.nextLine();
 
-        if(chooseToContinue.equals("Y")) {
+        if (chooseToContinue.equals("Y")) {
             return true;
-        }
-        else if(chooseToContinue.equals("N")) {
+        } else if (chooseToContinue.equals("N")) {
             return false;
         } else {
             System.out.println("You entered the wrong character");
@@ -124,10 +136,26 @@ public class AppIO {
         }
     }
 
+    public boolean isCreateFilesAgain() {
+        System.out.println("Do you want to create files in directory again?: Y/N");
+        Scanner sc = new Scanner(System.in);
+        chooseToCreateFileAgain = sc.nextLine();
+
+        if (chooseToCreateFileAgain.equals("Y")) {
+            return true;
+        } else if (chooseToCreateFileAgain.equals("N")) {
+            return false;
+        } else {
+            System.out.println("You entered the wrong character");
+            isCreateFilesAgain();
+        }
+        return false;
+    }
+
     public static void main(String[] args) throws IOException {
-//        createFilesInDirectory();
         AppIO appIO = new AppIO();
 
+        appIO.createFilesInDirectory(appIO);
         appIO.createListFiles();
         appIO.printAllFilesName();
         appIO.inputNameFile();
@@ -136,5 +164,6 @@ public class AppIO {
         appIO.addUsersTextToSelectedFile();
         appIO.isContinue();
         appIO.continueWriteTextToSelectedFile(appIO);
+
     }
 }
