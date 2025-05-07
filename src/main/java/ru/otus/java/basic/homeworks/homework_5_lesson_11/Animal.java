@@ -1,13 +1,13 @@
 package ru.otus.java.basic.homeworks.homework_5_lesson_11;
 
 public abstract class Animal {
-    String name;
-    int speedRun;
-    int speedSwim;
+    protected String name;
+    protected int speedRun;
+    protected int speedSwim;
 
-    int endurance;
-    int enduranceForSwim;
-    int enduranceForRun;
+    protected int endurance;
+    protected int enduranceForSwim;
+    protected int enduranceForRun;
 
     public Animal(String name, int speedRun, int speedSwim, int endurance, int enduranceForSwim, int enduranceForRun) {
         this.name = name;
